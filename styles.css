@@ -1,8 +1,198 @@
-/*
+/* @settings
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
+name: JSON Inline Fields
+id: json-inline-fields-style-settings
+settings:
+    -   
+        id: json-inline-fields-style-color-settings
+        title: Colors
+        type: heading
+        level: 3
+    -   
+        id: json-inline-fields-table-title-background-color
+        title: Table header background color
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#f2f3f5'
+        default-dark: '#161616'
+    -   
+        id: json-inline-fields-key-background-color
+        title: Key background color
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#f2f3f5'
+        default-dark: '#161616'
+    -   
+        id: json-inline-fields-value-background-color
+        title: Value background color
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#ffffff'
+        default-dark: '#202020'
+    -   
+        id: json-inline-fields-border-color
+        title: Border color
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#dddddd'
+        default-dark: '#333333'
+    -   
+        id: json-inline-fields-style-font-settings
+        title: Font
+        type: heading
+        level: 3
+    -   
+        id: json-inline-fields-style-font-family-settings
+        title: Font Family
+        type: heading
+        level: 4
+    -   
+        id: json-inline-fields-table-title-font
+        title: Table header font
+        description: Font used for the user interface
+        type: variable-text
+        default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
+    -   
+        id: json-inline-fields-key-font
+        title: Key font
+        description: Font used for the user interface
+        type: variable-text
+        default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
+    -   
+        id: json-inline-fields-value-font
+        title: Value font
+        description: Font used for the user interface
+        type: variable-text
+        default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
 
 */
+
+.json-inline-fields-container {
+    --jif-table-title-font: var(--json-inline-fields-table-title-font, initial);
+    --jif-key-font: var(--json-inline-fields-key-font, initial);
+    --jif-value-font: var(--json-inline-fields-value-font, initial);
+
+    --jif-table-title-background-color: var(--json-inline-fields-key-background-color, var(--background-secondary));
+    --jif-key-background-color: var(--json-inline-fields-key-background-color, var(--background-secondary));
+    --jif-key-background-alt-color: var(--json-inline-fields-key-background-alt-color, var(--background-secondary-alt));
+    --jif-value-background-color: var(--json-inline-fields-value-background-color, var(--background-primary));
+    --jif-border-color: var(--json-inline-fields-border-color, var(--background-modifier-border));
+
+    --jif-title-text-color: var(--json-inline-fields-key-background-color, var(--background-secondary));
+    --jif-table-title-text-color: var(--json-inline-fields-key-background-color, var(--background-secondary));
+    --jif-key-text-color: var(--json-inline-fields-key-background-color, var(--background-secondary));
+    --jif-value-text-color: var(--json-inline-fields-key-background-color, var(--background-secondary));
+}
+
+.json-inline-fields-tables-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.json-inline-fields-table {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: var(--jif-border-color);
+    border-width: var(--border-width);
+    overflow: hidden;
+    min-width: 50%;
+    font-size: 0.8rem;
+    display: grid;
+    max-width: 100%;
+    width: max-content;
+    grid-template-columns: fit-content(33%) minmax(max-content, 7fr);
+}
+
+.json-inline-fields-inner-table {
+    width: 100%;
+}
+
+.json-inline-fields-row {
+    display: flex;
+}
+
+.json-inline-fields-table .json-inline-fields-value  + .json-inline-fields-key + .json-inline-fields-value {
+    border-top-width: var(--border-width);
+    border-top-color: var(--jif-border-color);
+    border-top-style: solid;
+}
+
+.json-inline-fields-table .json-inline-fields-value + .json-inline-fields-key {
+    border-top-width: var(--border-width);
+    border-top-color: var(--jif-border-color);
+    border-top-style: solid;
+}
+
+.json-inline-fields-key {
+    font-family: var(--jif-key-font);
+    background-color: var(--jif-key-background-color);
+    padding: 4px 8px 4px 8px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+}
+
+.json-inline-fields-value {
+    font-family: var(--jif-value-font);
+    background-color: var(--jif-value-background-color);
+
+    padding: 4px 6px 4px 6px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.json-inline-fields-array-value {
+    background-color: var(--jif-key-background-alt-color);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--jif-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 4px 2px 4px;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.json-inline-fields-array {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.json-inline-fields-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.json-inline-fields-table-title-container {
+    font-family: var(--jif-table-title-font);
+    background-color: var(--jif-key-background-color);
+    width: 100%;
+    display: flex;
+    grid-column: 1 / span 2;
+    padding: 4px 6px 4px 6px;
+    justify-content: center;
+    border-bottom-style: solid;
+    border-bottom-width: var(--border-width);
+    border-bottom-color: var(--jif-border-color);
+}
+
+.json-inline-fields-table-title {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+    .json-inline-fields-table {
+        width: 100%;
+        grid-template-columns: 3fr 6fr;
+    }
+}

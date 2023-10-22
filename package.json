@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-json-inline-fields",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Beautify Dataview inline fields, if they are JSON objects.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
